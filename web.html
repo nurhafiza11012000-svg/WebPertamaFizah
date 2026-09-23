@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio | Nurhafizah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --glass:rgba(255,255,255,.06);
+    --glass-line:rgba(255,255,255,.14);
+    --text:#eef2fb;
+    --muted:#a3adc2;
+    --grad1:#7c5cff;
+    --grad2:#22d3ee;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; line-height:1.65;
+    position:relative; overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Sora',sans-serif;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{padding:92px 24px; position:relative;}
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  .orb{position:fixed; border-radius:50%; filter:blur(90px); z-index:-1; opacity:.5;}
+  .orb1{width:420px; height:420px; background:var(--grad1); top:-120px; left:-100px;}
+  .orb2{width:380px; height:380px; background:var(--grad2); bottom:-100px; right:-100px;}
+
+  .glass{
+    background:var(--glass); border:1px solid var(--glass-line);
+    backdrop-filter:blur(14px); border-radius:20px;
+  }
+
+  header{position:sticky; top:0; z-index:50; padding:14px 24px;}
+  nav{
+    max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;
+    padding:12px 22px; border-radius:999px;
+  }
+  .logo{font-weight:700; font-size:1.05rem;}
+  .logo span{background:linear-gradient(90deg,var(--grad1),var(--grad2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .navlinks{display:flex; gap:26px; font-size:.9rem; font-weight:500;}
+  .navlinks a{color:var(--muted); transition:color .2s;}
+  .navlinks a:hover, .navlinks a.active{color:var(--text);}
+  .burger{display:none; background:none; border:none; color:var(--text); font-size:1.3rem; cursor:pointer;}
+  @media (max-width:760px){
+    .navlinks{position:fixed; top:70px; right:16px; flex-direction:column; padding:22px; gap:18px;
+      transform:translateY(-12px); opacity:0; pointer-events:none; transition:.25s;}
+    .navlinks.open{opacity:1; pointer-events:auto; transform:none;}
+    .burger{display:block;}
+  }
+
+  /* HERO */
+  .hero{padding-top:56px; min-height:88vh; display:flex; align-items:center;}
+  .hero .wrap{display:grid; grid-template-columns:1fr auto; gap:50px; align-items:center;}
+  .eyebrow{display:inline-block; font-size:.78rem; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:20px;}
+  .hero h1{font-size:clamp(2.4rem,6vw,3.7rem); font-weight:800; line-height:1.08; margin-bottom:14px;}
+  .hero h1 span{background:linear-gradient(90deg,var(--grad1),var(--grad2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero .role{color:var(--muted); font-weight:500; font-size:1.05rem; margin-bottom:26px;}
+  .btnrow{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{padding:13px 28px; border-radius:999px; font-weight:600; font-size:.92rem;}
+  .btn-fill{background:linear-gradient(90deg,var(--grad1),var(--grad2)); color:#0a0e1a;}
+  .btn-line{border:1px solid var(--glass-line); color:var(--text);}
+  .btn:hover{opacity:.88;}
+  .photo-wrap{
+    width:250px; height:250px; border-radius:32px; padding:5px;
+    background:linear-gradient(135deg,var(--grad1),var(--grad2));
+  }
+  .photo-wrap img{width:100%; height:100%; object-fit:cover; border-radius:28px;}
+  @media (max-width:760px){ .hero .wrap{grid-template-columns:1fr; text-align:center;} .btnrow{justify-content:center;} .photo-wrap{margin:0 auto; width:200px; height:200px;} }
+
+  .sec-head{margin-bottom:40px;}
+  .eyebrow-sm{color:var(--grad2); font-size:.82rem; font-weight:600; display:block; margin-bottom:8px;}
+  .sec-head h2{font-size:clamp(1.5rem,3.2vw,2.1rem); font-weight:700;}
+
+  /* TENTANG */
+  .tentang-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:30px;}
+  .bio-card{padding:26px;}
+  .bio-row{display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--glass-line); font-size:.92rem;}
+  .bio-row:last-child{border-bottom:none;}
+  .bio-row .k{color:var(--muted);}
+  .bio-row .v{font-weight:600;}
+  .tentang-text p{color:var(--muted); margin-bottom:14px; max-width:56ch;}
+  @media (max-width:760px){ .tentang-grid{grid-template-columns:1fr;} }
+
+  /* SKILL */
+  .skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px;}
+  .skill-card{padding:22px;}
+  .skill-card h3{font-size:.98rem; margin-bottom:12px; font-weight:600;}
+  .bar{height:7px; border-radius:999px; background:rgba(255,255,255,.1); overflow:hidden;}
+  .bar i{display:block; height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,var(--grad1),var(--grad2)); transition:width 1.1s ease;}
+  .pct{font-size:.78rem; color:var(--muted); margin-top:6px; display:block;}
+  .tool-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:36px;}
+  .tool-row span{font-size:.8rem; font-weight:600; padding:8px 16px; border-radius:999px; background:var(--glass); border:1px solid var(--glass-line);}
+
+  /* PROJEK */
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
+  .proj-card{padding:22px; transition:transform .25s;}
+  .proj-card:hover{transform:translateY(-4px);}
+  .proj-icon{width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,var(--grad1),var(--grad2)); margin-bottom:16px;}
+  .proj-card h3{font-size:1.02rem; margin-bottom:8px; font-weight:600;}
+  .proj-card p{color:var(--muted); font-size:.88rem; margin-bottom:14px;}
+  .tag-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{font-size:.72rem; font-weight:600; color:var(--grad2); border:1px solid var(--glass-line); padding:4px 10px; border-radius:999px;}
+
+  /* KONTAK */
+  .kontak-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .klist{padding:26px;}
+  .klist a, .klist div{display:flex; gap:14px; align-items:center; padding:13px 0; border-bottom:1px solid var(--glass-line); font-size:.92rem;}
+  .klist a:last-child, .klist div:last-child{border-bottom:none;}
+  .ic{width:36px; height:36px; border-radius:50%; background:var(--glass); border:1px solid var(--glass-line); display:flex; align-items:center; justify-content:center; font-size:.9rem; color:var(--grad2); flex-shrink:0;}
+  .kform{padding:26px;}
+  form{display:flex; flex-direction:column; gap:12px;}
+  input, textarea{background:rgba(255,255,255,.05); border:1px solid var(--glass-line); border-radius:12px; padding:13px 14px; color:var(--text); font-family:inherit; font-size:.9rem;}
+  textarea{min-height:100px; resize:vertical;}
+  input:focus, textarea:focus{outline:1.5px solid var(--grad2);}
+  @media (max-width:760px){ .kontak-grid{grid-template-columns:1fr;} }
+
+  footer{text-align:center; padding:28px; color:var(--muted); font-size:.8rem;}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease;}
+  .reveal.show{opacity:1; transform:none;}
+
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(16px);
+    background:linear-gradient(90deg,var(--grad1),var(--grad2)); color:#0a0e1a; padding:12px 24px; border-radius:999px;
+    font-size:.86rem; font-weight:600; opacity:0; pointer-events:none; transition:.3s; z-index:100;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<header>
+  <nav class="glass">
+    <div class="logo">Nur<span>hafizah</span></div>
+    <div class="navlinks glass" id="navlinks">
+      <a href="#home" class="nlink active">Home</a>
+      <a href="#tentang" class="nlink">Tentang</a>
+      <a href="#skill" class="nlink">Skill</a>
+      <a href="#projek" class="nlink">Projek</a>
+      <a href="#kontak" class="nlink">Kontak</a>
+    </div>
+    <button class="burger" id="burger">☰</button>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow glass">Halo, saya</span>
+      <h1>Nur<br><span>hafizah</span></h1>
+      <div class="role">Siswa Kelas 10 · Teknik Komputer dan Jaringan (TKJ)</div>
+      <div class="btnrow">
+        <a href="#projek" class="btn btn-fill">Lihat Projek</a>
+        <a href="#kontak" class="btn btn-line">Hubungi Saya</a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <img src="foto.jpeg">
+
+
+  </div>
+</section>
+
+<section id="tentang">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow-sm">Tentang</span>
+      <h2>Profil Singkat</h2>
+    </div>
+    <div class="tentang-grid reveal">
+      <div class="bio-card glass">
+        <div class="bio-row"><span class="k">Nama</span><span class="v">Nurhafizah</span></div>
+        <div class="bio-row"><span class="k">TTL</span><span class="v">Duri, 24 Juni 2010</span></div>
+        <div class="bio-row"><span class="k">Jurusan</span><span class="v">TKJ</span></div>
+        <div class="bio-row"><span class="k">Kelas</span><span class="v">10</span></div>
+        <div class="bio-row"><span class="k">Domisili</span><span class="v">Duri, Riau</span></div>
+      </div>
+      <div class="tentang-text">
+        <p>Saya adalah siswa kelas 10 jurusan Teknik Komputer dan Jaringan (TKJ) yang sedang mempelajari dasar-dasar perakitan komputer, instalasi sistem operasi, dan jaringan komputer.</p>
+        <p>Saya tertarik memperdalam kemampuan di bidang jaringan dan teknologi digital, serta terus mengembangkan diri melalui praktik dan tugas sekolah.</p>
+        <p>Website portofolio ini dibuat untuk mendokumentasikan perkembangan kemampuan saya secara profesional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skill">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow-sm">Kemampuan</span>
+      <h2>Skill TKJ &amp; Pendukung</h2>
+    </div>
+    <div class="skill-grid reveal">
+      <div class="skill-card glass">
+        <h3>Perakitan Komputer</h3>
+        <div class="bar"><i data-w="85"></i></div><span class="pct">85%</span>
+      </div>
+      <div class="skill-card glass">
+        <h3>Instalasi Sistem Operasi</h3>
+        <div class="bar"><i data-w="80"></i></div><span class="pct">80%</span>
+      </div>
+      <div class="skill-card glass">
+        <h3>Jaringan Dasar (LAN)</h3>
+        <div class="bar"><i data-w="75"></i></div><span class="pct">75%</span>
+      </div>
+      <div class="skill-card glass">
+        <h3>Troubleshooting Perangkat</h3>
+        <div class="bar"><i data-w="72"></i></div><span class="pct">72%</span>
+      </div>
+      <div class="skill-card glass">
+        <h3>Microsoft Office</h3>
+        <div class="bar"><i data-w="88"></i></div><span class="pct">88%</span>
+      </div>
+      <div class="skill-card glass">
+        <h3>Dasar Pemrograman Web</h3>
+        <div class="bar"><i data-w="68"></i></div><span class="pct">68%</span>
+      </div>
+    </div>
+    <div class="tool-row reveal">
+      <span>Perakitan PC</span><span>Windows</span><span>Linux Dasar</span><span>Kabel UTP</span><span>Topologi Jaringan</span><span>MS Office</span>
+    </div>
+  </div>
+</section>
+
+<section id="projek">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow-sm">Projek</span>
+      <h2>Praktik &amp; Tugas Sekolah</h2>
+    </div>
+    <div class="proj-grid reveal">
+      <div class="proj-card glass">
+        <div class="proj-icon"></div>
+        <h3>Perakitan PC Sederhana</h3>
+        <p>Praktik merakit komputer dari komponen dasar sesuai modul pembelajaran TKJ.</p>
+        <div class="tag-row"><span class="tag">Hardware</span><span class="tag">Perakitan</span></div>
+      </div>
+      <div class="proj-card glass">
+        <div class="proj-icon"></div>
+        <h3>Instalasi Jaringan LAN Kecil</h3>
+        <p>Menghubungkan beberapa komputer dalam satu jaringan lokal menggunakan kabel UTP dan switch.</p>
+        <div class="tag-row"><span class="tag">LAN</span><span class="tag">Jaringan</span></div>
+      </div>
+      <div class="proj-card glass">
+        <div class="proj-icon"></div>
+        <h3>Website Portofolio Pribadi</h3>
+        <p>Website ini sendiri, dibangun menggunakan HTML, CSS, dan JavaScript.</p>
+        <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow-sm">Kontak</span>
+      <h2>Mari Terhubung</h2>
+    </div>
+    <div class="kontak-grid reveal">
+      <div class="klist glass">
+        <a href="mailto:nurhafizah@email.com"><span class="ic">@</span> nurhafizah@email.com</a>
+        <a href="https://wa.me/62800000000"><span class="ic">W</span> +62 85363390343</a>
+        <a href="#"><span class="ic">I</span> tulif_jajaa</a>
+        <div><span class="ic">L</span> Duri, Riau, Indonesia</div>
+      </div>
+      <div class="kform glass">
+        <form id="contactForm">
+          <input type="text" placeholder="Nama" required>
+          <input type="email" placeholder="Email" required>
+          <textarea placeholder="Pesan"></textarea>
+          <button type="submit" class="btn btn-fill" style="border:none; cursor:pointer;">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2026 Nurhafizah. Dibuat dengan HTML, CSS &amp; JavaScript.</footer>
+
+<div class="toast" id="toast">Pesan terkirim (demo)</div>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', () => navlinks.classList.toggle('open'));
+  document.querySelectorAll('.nlink').forEach(l => l.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navA = document.querySelectorAll('.nlink');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => { if(window.scrollY >= sec.offsetTop - 90) current = sec.getAttribute('id'); });
+    navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        entry.target.querySelectorAll('.bar i').forEach(bar => { bar.style.width = bar.dataset.w + '%'; });
+      }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    toast.classList.add('show');
+    form.reset();
+    setTimeout(() => toast.classList.remove('show'), 2600);
+  });
+</script>
+
+</body>
+</html>
